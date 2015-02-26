@@ -15,4 +15,4 @@ until response && response.status == :won
   puts response.message
 end
 
-puts "Goodbye!"
+Printer.goodbye
