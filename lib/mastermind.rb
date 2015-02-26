@@ -14,13 +14,12 @@ class Mastermind
       @start_time = Time.new
       puts Printer.start_game
       print "> "
-      input = gets.chomp
-      evaluator.user_input_checker_and_upcaser(input)
+      input = evaluator.user_input_checker_and_upcaser(gets.chomp)
 
       until input == secret
+        number_correct_colors = evaluator.guess_correct_colors(secret, input)
+        puts "'#{input}' has #{number_correct_colors} correct elements."
         puts "You taken #{evaluator.add_to_count} guess(es)."
-
-
         response = Response.new(:message => "Guess again!", :status => :continue)
         puts "For testing, the answer is #{secret}.".colorize(:cyan)
         puts response.message
@@ -28,17 +27,18 @@ class Mastermind
         evaluator.user_input_checker_and_upcaser(input)
       end
       @stop_time = Time.new
-      puts "You finished in #{@stop_time - @start_time} seconds!"
+      puts "Congratulations! You guessed the sequence '#{secret} in #{counter} guesses over #{@stop_time - @start_time} seconds!"
       Response.new(:message => "You Win!", :status => :won)
 
     elsif input == "c"
       @start_time = Time.new
       puts Printer.start_cheat_game(secret)
       print "> "
-      input = gets.chomp
-      evaluator.user_input_checker_and_upcaser(input)
+      input = evaluator.user_input_checker_and_upcaser(gets.chomp)
 
       until input == secret
+        number_correct_colors = evaluator.guess_correct_colors(secret, input)
+        puts "'#{input}' has #{number_correct_colors} correct elements."
         puts "You taken #{evaluator.add_to_count} guess(es)."
         response = Response.new(:message => "Guess again!", :status => :continue)
         puts response.message
@@ -46,7 +46,7 @@ class Mastermind
         end
 
       @stop_time = Time.new
-      puts "You finished in #{@stop_time - @start_time} seconds!"
+      puts "Congratulations! You guessed the sequence '#{secret} in #{counter} guesses over #{@stop_time - @start_time} seconds!"
       Response.new(:message => "You Win!", :status => :won)
 
     #elsif input == "i"

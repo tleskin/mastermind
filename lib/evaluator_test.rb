@@ -34,7 +34,7 @@ class EvaluatorTest < Minitest::Test
     assert_equal 1, @evaluator.add_to_count
   end
 
-  def test_the_user_input_has_two_correct_colors
+  def test_the_user_input_has_two_correct_colors_at_beginning_of_string
     assert_equal 2, @evaluator.guess_correct_colors("RRGG", "RRYY")
   end
 
@@ -42,8 +42,28 @@ class EvaluatorTest < Minitest::Test
     assert_equal 0, @evaluator.guess_correct_colors("RRGG", "BBBB")
   end
 
-  def test_the_user_input_has_one_correct_position
-    skip
+  def test_the_user_input_has_two_correct_colors_at_end_of_string
+    assert_equal 2, @evaluator.guess_correct_colors("RRGG", "YYRR")
+  end
+
+  def test_the_user_input_has_three_correct_colors_at_end_of_string
+    assert_equal 3, @evaluator.guess_correct_colors("RGGG", "YGGG")
+  end
+
+  def test_the_user_input_has_three_correct_colors_at_beginning_of_string
+    assert_equal 3, @evaluator.guess_correct_colors("GGGR", "GGGY")
+  end
+
+  def test_the_user_input_has_two_correct_colors_in_the_middle_of_string
+    assert_equal 2, @evaluator.guess_correct_colors("RRGG", "YRRY")
+  end
+
+  def test_the_user_input_has_two_correct_positions
+    assert_equal 2, @evaluator.guess_correct_positions("RRGG", "RRYY")
+  end
+
+  def test_the_user_input_has_no_correct_positions
+    assert_equal 0, @evaluator.guess_correct_positions("RRGG", "BBBB")
   end
 
 end
