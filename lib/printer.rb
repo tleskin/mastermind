@@ -24,4 +24,8 @@ Use (q)uit at any time to end the game.
 What's your guess?"
   end
 
+  def self.goodbye
+    "Goodbye!"
+  end
+
 end
