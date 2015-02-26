@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'minitest/pride'
+require 'minitest/emoji'
 require_relative 'mastermind'
 
 class MastermindTest < Minitest::Test
@@ -26,4 +26,5 @@ class MastermindTest < Minitest::Test
     response = mm.execute("q")
     assert_equal "You are leaving the game.", response.message
   end
+  
 end

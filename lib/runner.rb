@@ -1,7 +1,6 @@
 require_relative 'mastermind'
 require_relative 'printer'
 
-
 puts Printer.greeting
 puts Printer.menu
 

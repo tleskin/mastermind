@@ -1,7 +1,10 @@
 class Evaluator
 
+  attr_accessor :counter
+
   def initialize
     @available_colors = ['R', 'B', 'Y', 'G']
+    @counter = 0
   end
 
   def generate_secret_sequence
@@ -16,8 +19,8 @@ class Evaluator
     input.upcase
   end
 
+  def add_to_count
+    @counter += 1
+  end
+
 end
-
-
-evaluate = Evaluator.new
-puts evaluate.generate_secret_sequence

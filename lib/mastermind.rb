@@ -18,6 +18,7 @@ class Mastermind
       evaluator.user_input_checker_and_upcaser(input)
 
       until input == secret
+        puts "You used #{evaluator.add_to_count} guess."
         response = Response.new(:message => "Guess again!", :status => :continue)
         puts response.message
         input = gets.chomp
@@ -39,7 +40,7 @@ class Mastermind
         end
 
       Response.new(:message => "You Win!", :status => :won)
-    #elsif input == "i"
+    #gitelsif input == "i"
     elsif input == "q"
       Response.new(:message => "You are leaving the game.", :status => :won)
     end
