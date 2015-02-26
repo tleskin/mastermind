@@ -7,7 +7,6 @@ class EvaluatorTest < Minitest::Test
 
   def setup
     @evaluator = Evaluator.new
-
   end
 
   def test_it_generates_a_sequence_with_four_letters
