@@ -39,7 +39,7 @@ class Mastermind
         end
 
       Response.new(:message => "You Win!", :status => :won)
-    elsif input == "i"
+    #elsif input == "i"
     elsif input == "q"
       Response.new(:message => "You are leaving the game.", :status => :won)
     end
