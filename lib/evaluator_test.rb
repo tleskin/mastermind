@@ -34,4 +34,16 @@ class EvaluatorTest < Minitest::Test
     assert_equal 1, @evaluator.add_to_count
   end
 
+  def test_the_user_input_has_two_correct_colors
+    assert_equal 2, @evaluator.guess_correct_colors("RRGG", "RRYY")
+  end
+
+  def test_the_user_input_has_no_correct_colors
+    assert_equal 0, @evaluator.guess_correct_colors("RRGG", "BBBB")
+  end
+
+  def test_the_user_input_has_one_correct_position
+    skip
+  end
+
 end

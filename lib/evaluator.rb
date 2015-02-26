@@ -23,4 +23,14 @@ class Evaluator
     @counter += 1
   end
 
+  def guess_correct_colors(secret, input)
+    correct_elements = 0
+    secret.each_char do |color|
+      if input.include?(color)
+        correct_elements += 1
+      end
+    end
+    return correct_elements
+  end
+
 end

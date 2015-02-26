@@ -18,7 +18,9 @@ class Mastermind
       evaluator.user_input_checker_and_upcaser(input)
 
       until input == secret
-        puts "You used #{evaluator.add_to_count} guess."
+        puts "You taken #{evaluator.add_to_count} guess(es)."
+
+
         response = Response.new(:message => "Guess again!", :status => :continue)
         puts "For testing, the answer is #{secret}.".colorize(:cyan)
         puts response.message
@@ -30,12 +32,14 @@ class Mastermind
       Response.new(:message => "You Win!", :status => :won)
 
     elsif input == "c"
+      @start_time = Time.new
       puts Printer.start_cheat_game(secret)
       print "> "
       input = gets.chomp
       evaluator.user_input_checker_and_upcaser(input)
 
       until input == secret
+        puts "You taken #{evaluator.add_to_count} guess(es)."
         response = Response.new(:message => "Guess again!", :status => :continue)
         puts response.message
         input = gets.chomp
@@ -43,7 +47,6 @@ class Mastermind
 
       @stop_time = Time.new
       puts "You finished in #{@stop_time - @start_time} seconds!"
-
       Response.new(:message => "You Win!", :status => :won)
 
     #elsif input == "i"
