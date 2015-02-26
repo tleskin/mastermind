@@ -12,7 +12,7 @@ class Evaluator
   end
 
   def user_input_checker_and_upcaser(input)
-    until input.length == 4
+    while input.length < 4 || input.length > 4
       puts "Please enter a valid sequence!"
       input = gets.chomp
     end

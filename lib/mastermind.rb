@@ -11,7 +11,7 @@ class Mastermind
     @secret = evaluator.generate_secret_sequence
 
     if input == "p"
-      evaluator = Evaluator.new
+      @start_time = Time.new
       puts Printer.start_game
       print "> "
       input = gets.chomp
@@ -20,18 +20,20 @@ class Mastermind
       until input == secret
         puts "You used #{evaluator.add_to_count} guess."
         response = Response.new(:message => "Guess again!", :status => :continue)
+        puts "For testing, the answer is #{secret}.".colorize(:cyan)
         puts response.message
         input = gets.chomp
         evaluator.user_input_checker_and_upcaser(input)
       end
-
+      @stop_time = Time.new
+      puts "You finished in #{@stop_time - @start_time} seconds!"
       Response.new(:message => "You Win!", :status => :won)
 
     elsif input == "c"
       puts Printer.start_cheat_game(secret)
       print "> "
       input = gets.chomp
-      Evaluator.user_input_checker_and_upcaser(input)
+      evaluator.user_input_checker_and_upcaser(input)
 
       until input == secret
         response = Response.new(:message => "Guess again!", :status => :continue)
@@ -39,8 +41,13 @@ class Mastermind
         input = gets.chomp
         end
 
+      @stop_time = Time.new
+      puts "You finished in #{@stop_time - @start_time} seconds!"
+
       Response.new(:message => "You Win!", :status => :won)
-    #gitelsif input == "i"
+
+    #elsif input == "i"
+
     elsif input == "q"
       Response.new(:message => "You are leaving the game.", :status => :won)
     end
@@ -48,6 +55,3 @@ class Mastermind
   end
 
 end
-
-# takes input
-# passes to evaluator class
