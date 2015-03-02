@@ -1,58 +1,38 @@
-require_relative 'response'
-require_relative 'printer'
-require_relative 'evaluator'
+require_relative 'game_setup'
 
 class Mastermind
 
-  attr_reader :secret
-
   def execute(input)
-    evaluator = Evaluator.new
-    @secret = evaluator.generate_secret_sequence
 
-    if input == "p"
-      @start_time = Time.new
-      puts Printer.start_game
-      print "> "
-      input = evaluator.user_input_checker_and_upcaser(gets.chomp)
+    setup = GameSetup.new
 
-      until input == secret
-        number_correct_colors = evaluator.guess_correct_colors(secret, input)
-        puts "'#{input}' has #{number_correct_colors} correct elements."
-        puts "You taken #{evaluator.add_to_count} guess(es)."
-        response = Response.new(:message => "Guess again!", :status => :continue)
-        puts "For testing, the answer is #{secret}.".colorize(:cyan)
-        puts response.message
-        input = gets.chomp
-        evaluator.user_input_checker_and_upcaser(input)
-      end
-      @stop_time = Time.new
-      puts "Congratulations! You guessed the sequence '#{secret} in #{counter} guesses over #{@stop_time - @start_time} seconds!"
-      Response.new(:message => "You Win!", :status => :won)
+    if input == "p" || input == "play"
+      setup.game_run
+      Response.new(:message => "You win!", :status => :won)
 
-    elsif input == "c"
-      @start_time = Time.new
-      puts Printer.start_cheat_game(secret)
-      print "> "
-      input = evaluator.user_input_checker_and_upcaser(gets.chomp)
+    elsif input == "c" || input == "cheat"
+      setup.cheat_game
+      Response.new(:message => "You Win!", status: :won)
 
-      until input == secret
-        number_correct_colors = evaluator.guess_correct_colors(secret, input)
-        puts "'#{input}' has #{number_correct_colors} correct elements."
-        puts "You taken #{evaluator.add_to_count} guess(es)."
-        response = Response.new(:message => "Guess again!", :status => :continue)
-        puts response.message
-        input = gets.chomp
+    elsif input == "i" || input == "instructions"
+      puts Printer.instructions
+      puts Printer.ready
+      print Printer.input
+
+      input = gets.chomp
+
+        if input == "p" || input == "play"
+          setup.game_run
+          Response.new(message: "You win!", status: :won)
+        elsif input == "c" || input == "cheat"
+          setup.cheat_game
+          response = Response.new(message: "You win!", status: :won)
+        else
+          response = Response.new(message: "Have a great day!", status: :won)
         end
 
-      @stop_time = Time.new
-      puts "Congratulations! You guessed the sequence '#{secret} in #{counter} guesses over #{@stop_time - @start_time} seconds!"
-      Response.new(:message => "You Win!", :status => :won)
-
-    #elsif input == "i"
-
     elsif input == "q"
-      Response.new(:message => "You are leaving the game.", :status => :won)
+      response = Response.new(message: "You are leaving the game.", status: :won)
     end
 
   end
