@@ -29,10 +29,9 @@ class GameSetup
     start_time = time
     puts Printer.start_game
     print Printer.input
-    puts secret
-    input = evaluator.user_input_checker_and_upcaser(gets.chomp)
+    input = evaluator.user_input_checker_and_upcaser(gets.chomp, secret)
 
-    until input == secret
+    until input == secret || input == "q"
       number_correct_colors = evaluator.guess_correct_colors(secret, input)
       number_correct_positions = evaluator.guess_correct_positions(secret, input)
 
@@ -45,9 +44,13 @@ class GameSetup
       input = evaluator.user_input_checker_and_upcaser(gets.chomp)
     end
 
-    stop_time = time
-    add_to_count
-    puts Printer.guessed_sequence(secret, counter, stop_time, start_time)
+    if input == "q"
+      return input
+    else
+      stop_time = time
+      add_to_count
+      puts Printer.guessed_sequence(secret, counter, stop_time, start_time)
+    end
   end
 
   def cheat_game

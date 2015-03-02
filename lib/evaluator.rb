@@ -1,8 +1,14 @@
+require_relative 'response'
+
 class Evaluator
 
-  def user_input_checker_and_upcaser(input)
+  def user_input_checker_and_upcaser(input, secret)
     while input.length < 4 || input.length > 4
-      if input.length < 4
+      if input == "q"
+        return input
+      elsif input == "c"
+        return secret
+      elsif input.length < 4
         puts Printer.too_short
       elsif input.length > 4
         puts Printer.too_long

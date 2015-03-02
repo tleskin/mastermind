@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/emoji'
-require_relative 'evaluator'
+require '../lib/evaluator'
 
 class EvaluatorTest < Minitest::Test
 

@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/emoji'
-require_relative 'game_setup'
+require '../lib/game_setup'
 
 class GameSetupTest < Minitest::Test
 
@@ -29,5 +29,9 @@ class GameSetupTest < Minitest::Test
     assert @setup.time
   end
 
+  def test_it_wins_cheat_game
+    skip
+    assert_equal
+  end
 
 end
