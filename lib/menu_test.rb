@@ -1,8 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/emoji'
-require_relative 'mastermind'
+require_relative 'menu'
 
-class MastermindTest < Minitest::Test
+class MenuTest < Minitest::Test
   def test_it_exists
     assert Mastermind
   end

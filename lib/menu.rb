@@ -1,6 +1,6 @@
 require_relative 'game_setup'
 
-class Mastermind
+class Menu
 
   def execute(input)
 

@@ -1,15 +1,15 @@
-require_relative 'mastermind'
+require_relative 'menu'
 
 puts Printer.greeting
 puts Printer.menu
 
-mastermind = Mastermind.new
+menu = Menu.new
 response = nil
 
 until response && response.status == :won
   print Printer.input
   input = gets.chomp
-  response = mastermind.execute(input)
+  response = menu.execute(input)
   puts response.message
 end
 

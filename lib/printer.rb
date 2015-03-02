@@ -45,7 +45,7 @@ What's your guess?"
   end
 
   def self.guessed_sequence(secret, number_guesses, stop_time = 0, start_time =0)
-    "Congratulations! You guessed the sequence '#{secret}' in #{number_guesses} guess(es) over #{stop_time - start_time} seconds!"
+    "\nCongratulations! You guessed the sequence '#{secret}' in #{number_guesses} guess(es) over #{stop_time - start_time} seconds!"
   end
 
   def self.instructions
