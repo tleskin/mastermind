@@ -43,7 +43,6 @@ class GameSetup
       puts response.message
       print Printer.input
       input = evaluator.user_input_checker_and_upcaser(gets.chomp)
-
     end
 
     stop_time = time

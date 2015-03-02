@@ -4,7 +4,7 @@ require_relative 'mastermind'
 
 class MastermindTest < Minitest::Test
   def test_it_exists
-    assert MastermindTest
+    assert Mastermind
   end
 
   def test_it_wins
@@ -26,5 +26,6 @@ class MastermindTest < Minitest::Test
     response = mm.execute("q")
     assert_equal "You are leaving the game.", response.message
   end
+
 
 end
