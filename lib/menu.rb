@@ -30,7 +30,6 @@ class Menu
         if input == "p" || input == "play"
           setup.game_run
           if input == "q"
-            puts input
             response = Response.new(message: "You are leaving the game.", status: :won)
           else
             response = Response.new(:message => "You win!", :status => :won)

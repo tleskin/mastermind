@@ -41,7 +41,7 @@ class GameSetup
       response = Response.new(:message => "Guess again!", :status => :continue)
       puts response.message
       print Printer.input
-      input = evaluator.user_input_checker_and_upcaser(gets.chomp)
+      input = evaluator.user_input_checker_and_upcaser(gets.chomp, secret)
     end
 
     if input == "q"
